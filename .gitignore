@@ -1,6 +1,7 @@
 .stack-work/
 *~
 Setup.hs
+dist-newstyle/
 
 # Module will be made public after semester course finish to avoid plagiarism.
 # PA5.hs 

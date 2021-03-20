@@ -49,3 +49,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - Assignment5
+    - tasty
+    - tasty-smallcheck
+    - tasty-quickcheck
+    - tasty-hunit
