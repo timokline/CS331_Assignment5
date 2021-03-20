@@ -1,0 +1,8 @@
+cradle:
+  stack:
+    #- path: ".\\src"
+    #  component: "Assignment5:lib"
+    #- path: ".\\.stack-work\\dist\\274b403a\\build\\Assignment5-exe"
+    #  component: "Assignment5:exe:Assignment5-exe"
+    #- path: ".\\tests\\Spec.hs"
+    #  component: "Assignment5:test:Assignment5-test"
