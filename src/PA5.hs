@@ -10,19 +10,16 @@
 
 module PA5 where
 
-collatz :: Integer -> Integer
-collatz n
-  | even n = div n 2
-  | otherwise = 3 * n + 1
-
-collatzIterations :: Integer -> Integer
-collatzIterations n 
-  | n == 0 = 0
-  | collatz (n+1) /= 1 = n+1
 
 -- collatzCounts
 collatzCounts :: [Integer]
-collatzCounts = map collatzIterations [0..]
+collatzCounts = map (collatzIterations 0) [1..]
+  where
+    collatzIterations :: Integer -> (Integer -> Integer)
+    collatzIterations count 1 = count
+    collatzIterations count n
+      | even n = collatzIterations (count+1) (div n 2)
+      | otherwise = collatzIterations (count+1) (3 * n + 1)
 
 
 -- findList
