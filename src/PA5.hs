@@ -10,21 +10,25 @@
 
 module PA5 where
 
-
 -- collatzCounts
 collatzCounts :: [Integer]
-collatzCounts = map (collatzIterations 0) [1..]
-  where
-    collatzIterations :: Integer -> (Integer -> Integer)
-    collatzIterations count 1 = count
-    collatzIterations count n
-      | even n = collatzIterations (count+1) (div n 2)
-      | otherwise = collatzIterations (count+1) (3 * n + 1)
+collatzCounts = map (collatzIterations 0) [1..] where
+  collatzIterations :: Integer -> (Integer -> Integer)
+  collatzIterations count 1 = count
+  collatzIterations count n
+    | even n = collatzIterations (count+1) (div n 2)
+    | otherwise = collatzIterations (count+1) (3 * n + 1)
 
 
 -- findList
+-- https://stackoverflow.com/questions/55796657/finding-the-index-of-a-string-that-contains-a-substring-recursively
+-- ^^^ for fmap
 findList :: Eq a => [a] -> [a] -> Maybe Int
-findList _ _ = Just 42  -- DUMMY; REWRITE THIS!!!
+findList _ [] = Nothing
+findList [] _ = Just 0
+findList (x:xs) (y:ys)
+  | x == y = findList xs ys
+  | otherwise = fmap (1+) (findList (x:xs) ys) -- NOTE TO SELF: You can map two functions in one expression with 'fmap'
 
 
 -- operator ##
