@@ -9,6 +9,8 @@ Write a Haskell module `PA5`, contained in the file `PA5.hs`. Module PA5 should 
 
 * Function `findList`. This takes two lists of the same type. It returns a `Maybe Int`. It the first list is found as a continguous sublist of the second list, then the return value is `Just n`, where `n` is the earlier index (starting from zero) at which a copy of the first list begins. If the first list is *not* found as a contiguous sublist of the second, then the return value is `Nothing`.
 
+* Infix operator `##`. The two operands are lists of the same type. The return value is an `Int` giving the number of indices at which the two lists contain equal values.
+
 * Function `filterAB`. This takes a boolean function and two lists. It returns a list of all items in the second list for which the corresponding item in the first list makes the boolean function true.
 
 * Function `sumEvenOdd`. This takes a list of numbers. It returns a tuple of two numbers: the sum of the even-index items in the given list, and the sum of the odd-index items in the given list. Indices are zero-based.

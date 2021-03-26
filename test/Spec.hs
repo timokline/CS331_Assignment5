@@ -63,5 +63,17 @@ unitTests = testGroup "Unit Tests"
 
   , testCase "findList long list from test, #5" $
       assertEqual "Wrong return value" (Just 342) (findList ([50..100]++[1..50])
-            (h++[1..49]++[49..100]++[10..101]++h++h++h++h))
+            ([1..100]++[1..49]++[49..100]++[10..101]++[1..100]++[1..100]++[1..100]++[1..100]))
+
+  , testCase "## two non-empty numerical lists" $
+      assertEqual "Incorrect return value" 2 ([1,2,3,4,5] ## [1,1,3,3,9,9,9,9])
+
+  , testCase "## comparison of numericals with empty list" $
+      assertEqual "Should be \"Nothing\"" 0 ([] ## [1,1,3,3,9,9,9,9])
+
+  , testCase "## two non-empty string lists" $
+      assertEqual "Wrong return value" 3 ("abcde" ## "aXcXeX")
+
+  , testCase "## offset srting lists" $
+      assertEqual "Wrong return value" 0 ("abcde" ## "XaXcXeX")
   ]

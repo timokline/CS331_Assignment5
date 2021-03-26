@@ -27,13 +27,17 @@ findList :: Eq a => [a] -> [a] -> Maybe Int
 findList _ [] = Nothing
 findList [] _ = Just 0
 findList (x:xs) (y:ys)
-  | x == y = findList xs ys
-  | otherwise = fmap (1+) (findList (x:xs) ys) -- NOTE TO SELF: You can map two functions in one expression with 'fmap'
+  | x /= y = fmap (1+) (findList (x:xs) ys) -- NOTE TO SELF: You can map two functions in one expression with 'fmap'
+  | otherwise = findList xs ys
 
 
 -- operator ##
 (##) :: Eq a => [a] -> [a] -> Int
-_ ## _ = 42  -- DUMMY; REWRITE THIS!!!
+[] ## _ = 0
+_ ## [] = 0
+(x:xs) ## (y:ys)
+  | x == y = 1 + (xs ## ys)
+  | otherwise = xs ## ys
 
 
 -- filterAB
