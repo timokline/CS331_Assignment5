@@ -4,7 +4,7 @@
 -- CRSE: CS F331 - Programming Languages
 -- PROF: Glenn G. Chappell
 -- STRT: 2021-03-19
--- UPDT: N/A
+-- UPDT: 2021-03-27
 -- VERS: 1.0
 module Main where
 
@@ -29,12 +29,12 @@ properties = testGroup "Properties" [scProps, qcProps]
 
 scProps = testGroup "SmallCheck Tests"
   [ SC.testProperty "integer division" $
-      \n -> (n :: Integer) <= 10 SC.==> 1 == 1
+     \n -> (n :: Integer) <= 10 SC.==> 1 == 1
   ]
 
 qcProps = testGroup "QuickCheck Tests"
   [ QC.testProperty "integer division" $
-      \n -> (n :: Integer) <= 10 QC.==> 1 == 1
+     \n -> (n :: Integer) <= 10 QC.==> 1 == 1
   ]
 
 
@@ -63,17 +63,23 @@ unitTests = testGroup "Unit Tests"
 
   , testCase "findList long list from test, #5" $
       assertEqual "Wrong return value" (Just 342) (findList ([50..100]++[1..50])
-            ([1..100]++[1..49]++[49..100]++[10..101]++[1..100]++[1..100]++[1..100]++[1..100]))
+         ([1..100]++[1..49]++[49..100]++[10..101]++[1..100]++[1..100]++[1..100]++[1..100]))
 
   , testCase "## two non-empty numerical lists" $
-      assertEqual "Incorrect return value" 2 ([1,2,3,4,5] ## [1,1,3,3,9,9,9,9])
+     assertEqual "Incorrect return value" 2 ([1,2,3,4,5] ## [1,1,3,3,9,9,9,9])
 
   , testCase "## comparison of numericals with empty list" $
-      assertEqual "Should be \"Nothing\"" 0 ([] ## [1,1,3,3,9,9,9,9])
+     assertEqual "Should be \"Nothing\"" 0 ([] ## [1,1,3,3,9,9,9,9])
 
   , testCase "## two non-empty string lists" $
       assertEqual "Wrong return value" 3 ("abcde" ## "aXcXeX")
 
-  , testCase "## offset srting lists" $
+  , testCase "## offset string lists" $
       assertEqual "Wrong return value" 0 ("abcde" ## "XaXcXeX")
+  
+  , testCase "filterAB two non-empty numerical lists" $
+      assertEqual "Wrong list output" [2, 4] (filterAB (>0) [-1,1,-2,2] [1,2,3,4,5,6])
+
+  , testCase "filterAB numerical and string" $
+      assertEqual "Wrong return value" "cde" (filterAB (==1) [2,2,1,1,1,1,1] "abcde")
   ]
