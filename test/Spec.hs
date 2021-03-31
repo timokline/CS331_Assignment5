@@ -82,4 +82,7 @@ unitTests = testGroup "Unit Tests"
 
   , testCase "filterAB numerical and string" $
       assertEqual "Wrong return value" "cde" (filterAB (==1) [2,2,1,1,1,1,1] "abcde")
+
+  , testCase "findList, longer list #3: not found at end" $
+      assertEqual "Wrong value" Nothing (findList [20,21,22,23,24,25,1] [3..24])
   ]

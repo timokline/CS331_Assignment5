@@ -12,6 +12,8 @@
 
 module PA5 where
 
+--import Data.Bifunctor ( Bifunctor(bimap) )
+
 -- collatzCounts
 collatzCounts :: [Integer]
 collatzCounts = map (collatzCounts' 0) [1..] where
@@ -25,10 +27,6 @@ collatzCounts = map (collatzCounts' 0) [1..] where
 -- findList
 -- https://stackoverflow.com/questions/55796657/finding-the-index-of-a-string-that-contains-a-substring-recursively
 -- ^^^ for fmap
--- findList [] _ = Just 0
--- findList (x:xs) (y:ys) -- FAILS #4 & #5
---    | x /= y = fmap (1+) (findList (x:xs) ys) -- NOTE TO SELF: You can map two functions in one expression with 'fmap'
---    | otherwise = findList xs ys
 -- randomusername: https://stackoverflow.com/questions/29516517/how-can-i-find-the-index-where-one-list-appears-as-a-sublist-of-another
 --       pair two lists' elements as tuples
 --       check if they are equal...
@@ -38,7 +36,10 @@ findList :: Eq a => [a] -> [a] -> Maybe Int
 findList _ [] = Nothing
 findList xs (y:ys)
    | all (uncurry (==)) $ zip xs (y:ys) = Just 0
-   | otherwise = fmap (1 +) (findList xs ys)
+   --       UNLESS the sublist length is greater than the tail length
+   --       if so, return Nothing
+   | otherwise = if length xs > length ys then Nothing else fmap (1 +) (findList xs ys)
+
 
 -- operator ##
 (##) :: Eq a => [a] -> [a] -> Int
@@ -52,25 +53,17 @@ _ ## [] = 0
 -- filterAB
 -- Benjamin: https://stackoverflow.com/questions/41523856/predicate-and-a-list-search-haskell
 filterAB :: (a -> Bool) -> [a] -> [b] -> [b]
-filterAB predicate xs ys =
    -- F(x) = zip xs ys
    -- G(F(x)) = filter predicate fst F(x) 
-   let filteredPairsList = filter (\(first, second) -> predicate first) $ zip xs ys
-       result = map snd filteredPairsList
-   in result
+filterAB predicate xs ys = map snd $ filter (\(first, second) -> predicate first) $ zip xs ys
 
 
 -- sumEvenOdd
-sumEvenOdd :: Num a => [a] -> (a, a)
-{-
-   The assignment requires sumEvenOdd to be written using a fold.
-   Something like this:
+-- requires foldr/foldl/foldr1/foldl1
+-- https://wiki.haskell.org/Fold
+sumEvenOdd :: Num a => [a] -> (a,a)
+-- switch order of pair for summation
+sumEvenOdd = {-findSum-} foldr (\n (lhs, rhs) -> (n+rhs, lhs)) (0,0) --) where
+   --findSum = bimap sum sum --Hlint suggested from (sum (fst thePair), sum (snd thePair))
 
-      sumEvenOdd xs = fold* ... xs where
-            ...
-
-   Above, "..." should be replaced by other code. The "fold*" must be
-   one of the following: foldl, foldr, foldl1, foldr1.
--}
-sumEvenOdd _ = (0, 0)  -- DUMMY; REWRITE THIS!!!
-
+   --NOTE TO SELF: (\ x{is type of [a]} (ys,zs){is type (a,a)} -> ...) (0,0) [...]
