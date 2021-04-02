@@ -22,9 +22,9 @@ __You must implement__ `sumEvenOdd` __using a “fold” function:__ `foldl`, `f
 Write a Haskell program contained in the file `median.hs`. When executed (that is, when function `main` is called), it should do the following:
 
 * Print and explanatory message.
-* Input a sequence of integerts from the user, one on each line, ending with a blan line.
+* Input a sequence of integers from the user, one on each line, ending with a blank line.
 * If the list is empty, then print a message indicating this. Otherwise, print a median for the list (see "Median", below).
-* Ask the user whether to repaet the program. If so, start over; if not, exit.
+* Ask the user whether to repeat the program. If so, start over; if not, exit.
 
 Other requirements:
 

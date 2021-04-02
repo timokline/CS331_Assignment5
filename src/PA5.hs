@@ -5,7 +5,7 @@
 -- CRSE: CS F331
 -- PROF: Glenn G. Chappell
 -- STRT: 2021-03-16
--- UPDT: 2021-03-27
+-- UPDT: 2021-03-31
 -- VERS: 1.0
 -- RSRC: http://learnyouahaskell.com/
 --       https://downloads.haskell.org/~ghc/8.10.4/docs/html/libraries/
