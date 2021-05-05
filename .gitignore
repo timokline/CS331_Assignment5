@@ -4,5 +4,5 @@ Setup.hs
 dist-newstyle/
 
 # Module will be made public after semester course finish to avoid plagiarism.
-src/PA5.hs
+#src/PA5.hs
 app/pa5_test.hs
